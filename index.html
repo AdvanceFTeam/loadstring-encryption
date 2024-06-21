@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loadstring Encryptor</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: #ecf0f1;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #34495e;
+            border-radius: 5px;
+            background: #34495e;
+            color: #ecf0f1;
+            font-family: monospace;
+            resize: vertical; 
+            min-height: 50px; 
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #1abc9c;
+            color: #ecf0f1;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #16a085;
+        }
+        pre {
+            background: #34495e;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace;
+            max-height: 400px; 
+            overflow-y: auto;
+        }
+        .copy-btn {
+            margin-top: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Loadstring Encryptor</h1>
+        <form id="encrypt-form">
+            <label for="script">Enter your Lua script:</label><br>
+            <textarea id="script" name="script" rows="10" placeholder="Enter Lua script here..."></textarea><br>
+            <label for="method">Select encryption method:</label><br>
+            <select id="method" name="method">
+                <option value="loadstringobfuscation">Lua Obfuscation</option>
+            </select><br>
+            <button type="button" onclick="encryptScript()">Encrypt</button>
+        </form>
+        <h2>Encrypted Script:</h2>
+        <div id="encrypted-container">
+            <pre id="encrypted-script"></pre>
+            <button class="copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
+        </div>
+    </div>
+    <script src="encrypt.js"></script>
+    <script>
+        function copyToClipboard() {
+            const encryptedScript = document.getElementById('encrypted-script');
+            const textarea = document.createElement('textarea');
+            textarea.value = encryptedScript.textContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Encrypted loadstring copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
